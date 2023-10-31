@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "take-out-frontend-rider (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "take-out-frontend-rider (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
