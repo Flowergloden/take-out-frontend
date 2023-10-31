@@ -27,10 +27,5 @@ namespace take_out_frontend_rider
         {
             this.InitializeComponent();
         }
-
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            myButton.Content = "Clicked";
-        }
     }
 }
