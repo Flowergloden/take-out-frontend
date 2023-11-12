@@ -27,12 +27,22 @@ namespace take_out_frontend_rider
         public MainWindow()
         {
             this.InitializeComponent();
-            ContextFrame.Navigate(typeof(TestPage));
+            ContextFrame.Navigate(typeof(OrderAvailable));
         }
 
-        private void TestPageSwitch(object sender, RoutedEventArgs e)
+        private void Switch_OrderAvailable(object sender, RoutedEventArgs e)
         {
-            ContextFrame.Navigate(typeof(TestPage), null, new EntranceNavigationTransitionInfo());
+            ContextFrame.Navigate(typeof(OrderAvailable), null, new EntranceNavigationTransitionInfo());
+        }
+
+        private void Switch_Order(object sender, RoutedEventArgs e)
+        {
+            ContextFrame.Navigate(typeof(Order), null, new EntranceNavigationTransitionInfo());
+        }
+
+        private void Switch_status(object sender, RoutedEventArgs e)
+        {
+            ContextFrame.Navigate(typeof(Status), null, new EntranceNavigationTransitionInfo());
         }
     }
 }
