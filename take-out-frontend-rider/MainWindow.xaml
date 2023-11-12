@@ -9,10 +9,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView x:Name="Nav" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
-        <NavigationView.MenuItems>
-            <NavigationViewItem Content="test context" Tag="test tag" />
-        </NavigationView.MenuItems>
-        <Frame x:Name="ContextFrame" />
-    </NavigationView>
+    <Grid x:Name="AppMainWindow">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <local:TitleBar  Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <Button Content="Test Page" Click="TestPageSwitch"></Button>
+        </StackPanel>
+        <Frame Grid.Row="1" Grid.Column="1" x:Name="ContextFrame"></Frame>
+    </Grid>
 </Window>

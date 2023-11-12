@@ -15,6 +15,9 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -41,10 +44,19 @@ namespace take_out_frontend_rider
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            MainWindow = new MainWindow();
+            _windowHandle = WindowNative.GetWindowHandle(MainWindow);
+            var windowId = Win32Interop.GetWindowIdFromWindow(_windowHandle);
+
+            AppWindow = AppWindow.GetFromWindowId(windowId);
+            AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+            MainWindow.Activate();
         }
 
-        private Window m_window;
+        private IntPtr _windowHandle;
+
+        public static Window MainWindow { get; private set; }
+
+        public static AppWindow AppWindow { get; private set; }
     }
 }
