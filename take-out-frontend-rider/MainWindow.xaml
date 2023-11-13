@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <local:TitleBar  Grid.ColumnSpan="2"/>
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
             <AppBarButton Label="可接订单" Click="Switch_OrderAvailable"></AppBarButton>
             <AppBarButton Label="历史订单" Click="Switch_Order"></AppBarButton>
             <AppBarButton Label="个人数据" Click="Switch_status"></AppBarButton>

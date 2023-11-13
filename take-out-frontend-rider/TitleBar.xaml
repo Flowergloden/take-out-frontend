@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Height="48" Padding="16,0,0,0" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+    <Grid Height="48" Padding="16,0,0,0" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="120"/>

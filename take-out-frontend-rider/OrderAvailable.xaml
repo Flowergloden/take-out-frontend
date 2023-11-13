@@ -26,9 +26,12 @@
             ItemClick="ContentGridView_ItemClick"
             FlowDirection="LeftToRight">
             <GridView.ItemTemplate>
-                <DataTemplate x:Key='TextTemplate' x:DataType='local:OrderAvailableItem' >
-                    <StackPanel Width='240' Orientation='Horizontal'>
-                        <TextBlock Style='{StaticResource TitleTextBlockStyle}' Margin='8,0,0,0' Text='{x:Bind Address}' />
+                <DataTemplate x:Key='TextTemplate' x:DataType='local:OrderAvailableItem'>
+                    <StackPanel Orientation='Vertical' Width="480">
+                        <TextBlock Style='{StaticResource BaseTextBlockStyle}' Margin='8,0,8,0'
+                                   Text='{x:Bind Address}' />
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="8, 0, 8, 0"
+                                   Text="{x:Bind OrderTime}" />
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
