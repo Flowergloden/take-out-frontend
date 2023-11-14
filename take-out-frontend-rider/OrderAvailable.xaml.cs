@@ -61,11 +61,11 @@ namespace take_out_frontend_rider
 
     public class OrderAvailableItem
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Number { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public string UserName { get; set; }
-        public string AddressBookId { get; set; }
+        public int AddressBookId { get; set; }
         public string Address { get; set; }
         public string OrderTime { get; set; }
     }
