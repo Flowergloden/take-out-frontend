@@ -11,6 +11,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -24,6 +25,7 @@ namespace take_out_frontend_rider
     public sealed partial class OrderAvailable : Page
     {
         public List<OrderAvailableItem> Items;
+
         public OrderAvailable()
         {
             this.InitializeComponent();
@@ -32,22 +34,24 @@ namespace take_out_frontend_rider
             {
                 new()
                 {
-                    Id = "1", Number = "1", UserId = "1", UserName = "1", AddressBookId = "1", Address = "陕西省西安市西太路西安电子科技大学长安校区大学生活动中心",
+                    Id = 1, Number = "1", UserId = 1, UserName = "1", AddressBookId = 1,
+                    Address = "陕西省西安市西太路西安电子科技大学长安校区大学生活动中心",
                     OrderTime = "2023-11-13"
                 },
                 new()
                 {
-                    Id = "1", Number = "1", UserId = "1", UserName = "1", AddressBookId = "1", Address = "medium-length-text test",
+                    Id = 1, Number = "1", UserId = 1, UserName = "1", AddressBookId = 1,
+                    Address = "medium-length-text test",
                     OrderTime = "2023-11-12"
                 },
                 new()
                 {
-                    Id = "1", Number = "1", UserId = "1", UserName = "1", AddressBookId = "1", Address = "1",
+                    Id = 1, Number = "1", UserId = 1, UserName = "1", AddressBookId = 1, Address = "1",
                     OrderTime = "1"
                 },
                 new()
                 {
-                    Id = "1", Number = "1", UserId = "1", UserName = "1", AddressBookId = "1", Address = "1",
+                    Id = 1, Number = "1", UserId = 1, UserName = "1", AddressBookId = 1, Address = "1",
                     OrderTime = "1"
                 },
             };
@@ -55,7 +59,9 @@ namespace take_out_frontend_rider
 
         private void ContentGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            throw new NotImplementedException();
+            var item = e.ClickedItem;
+            MainWindow.Instance.MainContextFrame.Navigate(typeof(OrderAvailableStatus), item,
+                new DrillInNavigationTransitionInfo());
         }
     }
 
