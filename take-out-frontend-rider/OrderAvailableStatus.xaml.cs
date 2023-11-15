@@ -11,6 +11,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -37,6 +38,12 @@ namespace take_out_frontend_rider
             item ??= new OrderAvailableItem();
 
             _item = item;
+        }
+
+        private void Confirm_OnClick(object sender, RoutedEventArgs e)
+        {
+            // MainWindow.Instance.MainContextFrame.Navigate(typeof(OrderAvailable), null, new DrillInNavigationTransitionInfo());
+            MainWindow.Instance.MainContextFrame.GoBack();
         }
     }
 }

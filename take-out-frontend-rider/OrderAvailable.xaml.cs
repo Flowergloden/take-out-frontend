@@ -57,9 +57,17 @@ namespace take_out_frontend_rider
             };
         }
 
-        private void ContentGridView_ItemClick(object sender, ItemClickEventArgs e)
+        // private void ContentGridView_ItemClick(object sender, ItemClickEventArgs e)
+        // {
+        //     var item = e.ClickedItem;
+        //     MainWindow.Instance.MainContextFrame.Navigate(typeof(OrderAvailableStatus), item,
+        //         new DrillInNavigationTransitionInfo());
+        // }
+
+        private void Accept_OnClick(object sender, RoutedEventArgs e)
         {
-            var item = e.ClickedItem;
+            var button = sender as Button;
+            var item = button?.DataContext;
             MainWindow.Instance.MainContextFrame.Navigate(typeof(OrderAvailableStatus), item,
                 new DrillInNavigationTransitionInfo());
         }

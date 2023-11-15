@@ -18,21 +18,36 @@
         <GridView
             x:Name="ContentGridView"
             ItemsSource="{x:Bind Items}"
-            IsItemClickEnabled="True"
+            IsItemClickEnabled="False"
             CanDragItems="False"
             AllowDrop="False"
             CanReorderItems="False"
             SelectionMode="None"
-            ItemClick="ContentGridView_ItemClick"
             FlowDirection="LeftToRight">
             <GridView.ItemTemplate>
                 <DataTemplate x:Key='TextTemplate' x:DataType='local:OrderAvailableItem'>
-                    <StackPanel Orientation='Vertical' Width="480">
-                        <TextBlock Style='{StaticResource BaseTextBlockStyle}' Margin='8,0,8,0'
-                                   Text='{x:Bind Address}' />
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="8, 0, 8, 0"
-                                   Text="{x:Bind OrderTime}" />
-                    </StackPanel>
+                    <!-- <StackPanel Orientation='Vertical' Width="480"> -->
+                    <!--     <TextBlock Style='{StaticResource BaseTextBlockStyle}' Margin='8,0,8,0' -->
+                    <!--                Text='{x:Bind Address}' /> -->
+                    <!--     <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="8, 0, 8, 0" -->
+                    <!--                Text="{x:Bind OrderTime}" /> -->
+                    <!-- </StackPanel> -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="360" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource BaseTextBlockStyle}"
+                                   Margin="8,0,8,0" Text="{x:Bind Address}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource BodyTextBlockStyle}"
+                                   Margin="8,0,8,0" Text="{x:Bind OrderTime}" />
+                        <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource AccentButtonStyle}"
+                                Content="接单" Margin="8,0,8,0" Click="Accept_OnClick"/>
+                    </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>

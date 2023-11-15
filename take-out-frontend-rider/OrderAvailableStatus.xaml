@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Page
     x:Class="take_out_frontend_rider.OrderAvailableStatus"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -11,10 +12,25 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical">
-            <TextBlock Text="{x:Bind _item.Address}" />
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+            <TextBlock Text="地址：" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="姓名：" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="电话号码：" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="下单时间：" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind _item.Address}" TextWrapping="Wrap" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind _item.UserName}" TextWrapping="Wrap" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind _item.Number}" TextWrapping="Wrap" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Bind _item.OrderTime}" TextWrapping="Wrap" />
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="确认送达"
+                Style="{StaticResource AccentButtonStyle}" Click="Confirm_OnClick"/>
     </Grid>
 </Page>
