@@ -24,5 +24,14 @@ namespace take_out_frontend_rider
         {
             this.InitializeComponent();
         }
+
+        private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
+        {
+            var frame = MainWindow.Instance.MainContextFrame;
+            if (frame.CanGoBack)
+            {
+                frame.GoBack();
+            }
+        }
     }
 }

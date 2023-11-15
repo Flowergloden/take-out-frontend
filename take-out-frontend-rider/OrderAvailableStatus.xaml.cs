@@ -42,8 +42,11 @@ namespace take_out_frontend_rider
 
         private void Confirm_OnClick(object sender, RoutedEventArgs e)
         {
-            // MainWindow.Instance.MainContextFrame.Navigate(typeof(OrderAvailable), null, new DrillInNavigationTransitionInfo());
-            MainWindow.Instance.MainContextFrame.GoBack();
+            Profiles.HasOrder = false;
+            Profiles.OrderNow = null;
+            var frame = MainWindow.Instance.MainContextFrame;
+            frame.Navigate(typeof(OrderAvailable), null, new DrillInNavigationTransitionInfo());
+            frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
         }
     }
 }

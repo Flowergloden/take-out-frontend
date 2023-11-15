@@ -68,8 +68,11 @@ namespace take_out_frontend_rider
         {
             var button = sender as Button;
             var item = button?.DataContext;
-            MainWindow.Instance.MainContextFrame.Navigate(typeof(OrderAvailableStatus), item,
-                new DrillInNavigationTransitionInfo());
+            var frame = MainWindow.Instance.MainContextFrame;
+            Profiles.HasOrder = true;
+            Profiles.OrderNow = item;
+            frame.Navigate(typeof(OrderAvailableStatus), item, new DrillInNavigationTransitionInfo());
+            frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
         }
     }
 

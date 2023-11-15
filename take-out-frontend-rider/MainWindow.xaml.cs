@@ -37,7 +37,14 @@ namespace take_out_frontend_rider
 
         private void Switch_OrderAvailable(object sender, RoutedEventArgs e)
         {
-            ContextFrame.Navigate(typeof(OrderAvailable), null, new EntranceNavigationTransitionInfo());
+            if (Profiles.HasOrder)
+            {
+                ContextFrame.Navigate(typeof(OrderAvailableStatus), Profiles.OrderNow, new EntranceNavigationTransitionInfo());
+            }
+            else
+            {
+                ContextFrame.Navigate(typeof(OrderAvailable), null, new EntranceNavigationTransitionInfo());
+            }
         }
 
         private void Switch_Order(object sender, RoutedEventArgs e)

@@ -11,12 +11,11 @@
 
     <Grid Height="48" Padding="16,0,0,0" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
-        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="16">
-            <TextBlock VerticalAlignment="Center" Text="clm take out rider" Style="{StaticResource CaptionTextBlockStyle}"/>
-        </StackPanel>
+        <Button Grid.Column="0" Style="{StaticResource NavigationBackButtonNormalStyle}" Click="ButtonBack_OnClick" />
+        <TextBlock Grid.Column="1" Text="clm take out rider" Style="{StaticResource CaptionTextBlockStyle}" />
     </Grid>
 </UserControl>
