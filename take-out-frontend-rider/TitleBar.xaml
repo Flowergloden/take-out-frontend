@@ -9,13 +9,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Height="48" Padding="16,0,0,0" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
+     <!-- TODO: Change title bar impl to SetTitleBar() method -->
+    <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Style="{StaticResource NavigationBackButtonNormalStyle}" Click="ButtonBack_OnClick" />
-        <TextBlock Grid.Column="1" Text="clm take out rider" Style="{StaticResource CaptionTextBlockStyle}" />
+        <Button Grid.Column="0" Width="48" Height="48" Click="ButtonBack_OnClick"
+                Style="{StaticResource NavigationBackButtonNormalStyle}" />
+        <TextBlock Grid.Column="1" Text="clm take out rider" Style="{StaticResource CaptionTextBlockStyle}"
+                   VerticalAlignment="Center" />
     </Grid>
 </UserControl>
