@@ -23,6 +23,8 @@ namespace take_out_frontend_rider
     /// </summary>
     public sealed partial class Status : Page
     {
+        public string User = "user_name";
+        public string Phone = "phone_number";
         public Status()
         {
             this.InitializeComponent();

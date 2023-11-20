@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Page
     x:Class="take_out_frontend_rider.Status"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,10 +10,23 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Margin="16,16,16,16" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+          CornerRadius="10" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Test Page"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="骑手姓名：" Margin="8,8,8,8"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="骑手电话：" Margin="8,8,8,8"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind User}" Margin="8,8,8,8"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind Phone}" Margin="8,8,8,8"
+                   Style="{StaticResource BaseTextBlockStyle}" />
     </Grid>
 </Page>

@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
 
-    <Grid>
+    <Grid Margin="16,16,16,16">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
