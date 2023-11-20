@@ -72,7 +72,15 @@ namespace take_out_frontend_rider
             Profiles.HasOrder = true;
             Profiles.OrderNow = item;
             frame.Navigate(typeof(OrderAvailableStatus), item, new DrillInNavigationTransitionInfo());
-            frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
+            // frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
+            for (int i = 0; i < frame.BackStack.Count; i++)
+            {
+                if (frame.BackStack[i].SourcePageType == typeof(OrderAvailable))
+                {
+                    frame.BackStack.RemoveAt(i);
+                    --i;
+                }
+            }
         }
     }
 

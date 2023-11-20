@@ -25,6 +25,7 @@ namespace take_out_frontend_rider
     public sealed partial class OrderAvailableStatus : Page
     {
         private OrderAvailableItem _item;
+
         public OrderAvailableStatus()
         {
             this.InitializeComponent();
@@ -46,7 +47,15 @@ namespace take_out_frontend_rider
             Profiles.OrderNow = null;
             var frame = MainWindow.Instance.MainContextFrame;
             frame.Navigate(typeof(OrderAvailable), null, new DrillInNavigationTransitionInfo());
-            frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
+            // frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
+            for (int i = 0; i < frame.BackStack.Count; i++)
+            {
+                if (frame.BackStack[i].SourcePageType == typeof(OrderAvailableStatus))
+                {
+                    frame.BackStack.RemoveAt(i);
+                    --i;
+                }
+            }
         }
     }
 }
