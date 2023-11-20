@@ -18,14 +18,36 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace take_out_frontend_rider
 {
+    public class OrderItem
+    {
+        public int Id;
+        public int OrderId;
+        public int DeliveryStatus;
+    }
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class Order : Page
     {
+        public List<OrderItem> Orders;
         public Order()
         {
             this.InitializeComponent();
+            Orders = new()
+            {
+                new()
+                {
+                    Id = 1,
+                    OrderId = 1,
+                    DeliveryStatus = 1
+                },
+                new()
+                {
+                    Id = 2,
+                    OrderId = 2,
+                    DeliveryStatus = 2
+                },
+            };
         }
     }
 }

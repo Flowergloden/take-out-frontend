@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Page
     x:Class="take_out_frontend_rider.Order"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -7,12 +8,46 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Test Page"></TextBlock>
+        <GridView ItemsSource="{x:Bind Orders}"
+                  SelectionMode="None"
+                  IsItemClickEnabled="False"
+                  CanDragItems="False"
+                  AllowDrop="False"
+                  CanReorderItems="False"
+                  FlowDirection="LeftToRight">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:OrderItem">
+                    <Grid Margin="8,8,8,8" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+                          CornerRadius="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" MinWidth="240" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="配送id：" Style="{StaticResource BaseTextBlockStyle}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="订单id："
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="订单状态："
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind Id}"
+                                   Style="{StaticResource BaseTextBlockStyle}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind OrderId}"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind DeliveryStatus}"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </Page>
