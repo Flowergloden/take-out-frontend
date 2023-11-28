@@ -25,16 +25,16 @@ namespace take_out_frontend_rider
     /// </summary>
     public sealed partial class Status : Page
     {
+        public event EventHandler StatusChanged;
+
         private const string StatusDir = "rider/info/1";
         public string User;
         public string Phone;
 
         public Status()
         {
-            this.InitializeComponent();
-            Profiles.GetStatus();
-            User = Profiles.StatusDataInstance.User;
-            Phone = Profiles.StatusDataInstance.Phone;
+            GetStatus();
+            StatusChanged += (_, _) => { this.InitializeComponent(); };
         }
 
         private async void GetStatus()
@@ -47,6 +47,7 @@ namespace take_out_frontend_rider
             User = dataElement.GetProperty("name").GetString();
             Phone = dataElement.GetProperty("phone").GetString();
             Console.WriteLine($"inner: {User}");
+            StatusChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
