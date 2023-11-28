@@ -44,6 +44,7 @@ namespace take_out_frontend_rider
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            Profiles.Init();
             MainWindow = new MainWindow();
             _windowHandle = WindowNative.GetWindowHandle(MainWindow);
             var windowId = Win32Interop.GetWindowIdFromWindow(_windowHandle);

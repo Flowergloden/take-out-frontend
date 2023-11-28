@@ -30,49 +30,33 @@ namespace take_out_frontend_rider
         {
             this.InitializeComponent();
 
+            // TEST ONLY
             Items = new List<OrderAvailableItem>
             {
-                new()
+                new ()
                 {
-                    Id = 1, Number = "1", UserId = 1, UserName = "1", AddressBookId = 1,
-                    Address = "陕西省西安市西太路西安电子科技大学长安校区大学生活动中心",
-                    OrderTime = "2023-11-13"
-                },
-                new()
-                {
-                    Id = 1, Number = "1", UserId = 1, UserName = "1", AddressBookId = 1,
-                    Address = "medium-length-text test",
-                    OrderTime = "2023-11-12"
-                },
-                new()
-                {
-                    Id = 1, Number = "1", UserId = 1, UserName = "1", AddressBookId = 1, Address = "1",
-                    OrderTime = "1"
-                },
-                new()
-                {
-                    Id = 1, Number = "1", UserId = 1, UserName = "1", AddressBookId = 1, Address = "1",
-                    OrderTime = "1"
-                },
+                    Id = 1,
+                    Number = "1",
+                    UserId = 1,
+                    UserName = "张三",
+                    AddressBookId = 1,
+                    Address = "广东省广州市天河区华南理工大学",
+                    OrderTime = "2021-06-01 12:00:00"
+                }
             };
         }
 
-        // private void ContentGridView_ItemClick(object sender, ItemClickEventArgs e)
-        // {
-        //     var item = e.ClickedItem;
-        //     MainWindow.Instance.MainContextFrame.Navigate(typeof(OrderAvailableStatus), item,
-        //         new DrillInNavigationTransitionInfo());
-        // }
-
-        private void Accept_OnClick(object sender, RoutedEventArgs e)
+        private async void Accept_OnClick(object sender, RoutedEventArgs e)
         {
+            // TEST ONLY
+            await Profiles.GetClient("rider/info/1");
+
             var button = sender as Button;
             var item = button?.DataContext;
             var frame = MainWindow.Instance.MainContextFrame;
             Profiles.HasOrder = true;
             Profiles.OrderNow = item;
             frame.Navigate(typeof(OrderAvailableStatus), item, new DrillInNavigationTransitionInfo());
-            // frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
             for (int i = 0; i < frame.BackStack.Count; i++)
             {
                 if (frame.BackStack[i].SourcePageType == typeof(OrderAvailable))

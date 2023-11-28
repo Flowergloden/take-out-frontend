@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.Json;
+using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
@@ -23,11 +25,28 @@ namespace take_out_frontend_rider
     /// </summary>
     public sealed partial class Status : Page
     {
-        public string User = "user_name";
-        public string Phone = "phone_number";
+        private const string StatusDir = "rider/info/1";
+        public string User;
+        public string Phone;
+
         public Status()
         {
             this.InitializeComponent();
+            Profiles.GetStatus();
+            User = Profiles.StatusDataInstance.User;
+            Phone = Profiles.StatusDataInstance.Phone;
+        }
+
+        private async void GetStatus()
+        {
+            var info = await Profiles.GetClient(StatusDir);
+
+            var jsonInfo = JsonDocument.Parse(info);
+            var root = jsonInfo.RootElement;
+            var dataElement = root.GetProperty("data");
+            User = dataElement.GetProperty("name").GetString();
+            Phone = dataElement.GetProperty("phone").GetString();
+            Console.WriteLine($"inner: {User}");
         }
     }
 }
