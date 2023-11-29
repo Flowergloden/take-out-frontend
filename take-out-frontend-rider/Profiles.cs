@@ -1,5 +1,7 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Text.Json;
 
@@ -21,6 +23,17 @@ public static class Profiles
     public static async Task<string> GetClient(string dir)
     {
         var message = await Client.GetAsync(dir);
+        message.EnsureSuccessStatusCode();
+        var jsonResponse = await message.Content.ReadAsStringAsync();
+        Console.Write($"{jsonResponse}\n");
+        return jsonResponse;
+    }
+
+    public static async Task<string> PutClient(string dir, JsonDocument? content)
+    {
+        JsonContent jsonContent  = JsonContent.Create(content);
+
+        var message = await Client.PutAsync(dir, jsonContent);
         message.EnsureSuccessStatusCode();
         var jsonResponse = await message.Content.ReadAsStringAsync();
         Console.Write($"{jsonResponse}\n");
