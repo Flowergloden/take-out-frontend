@@ -33,9 +33,9 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="id："
+                        <TextBlock CacheMode="BitmapCache" Text="id："
                                    Style="{StaticResource BaseTextBlockStyle}" Margin="16,8,16,4" />
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="订单状态："
+                        <TextBlock Grid.Row="1" Grid.Column="0" CacheMode="BitmapCache" Text="订单状态："
                                    Style="{StaticResource BodyTextBlockStyle}" Margin="16,4,16,8" />
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind Id}"
                                    Style="{StaticResource BaseTextBlockStyle}" Margin="16,8,16,4" />

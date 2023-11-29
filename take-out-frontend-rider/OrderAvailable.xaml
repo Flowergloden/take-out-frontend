@@ -40,6 +40,7 @@
                         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource BodyTextBlockStyle}"
                                    Margin="8,0,8,0" Text="{x:Bind OrderTime}" TextWrapping="Wrap"/>
                         <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                CacheMode="BitmapCache"
                                 Style="{StaticResource AccentButtonStyle}"
                                 Content="接单" Margin="8,0,8,0" Click="Accept_OnClick" />
                     </Grid>

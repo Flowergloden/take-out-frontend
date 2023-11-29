@@ -22,15 +22,15 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-            <TextBlock Text="地址：" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="姓名：" />
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="电话号码：" />
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="下单时间：" />
+            <TextBlock CacheMode="BitmapCache" Text="地址：" />
+            <TextBlock Grid.Row="1" Grid.Column="0" CacheMode="BitmapCache" Text="姓名：" />
+            <TextBlock Grid.Row="2" Grid.Column="0" CacheMode="BitmapCache" Text="电话号码：" />
+            <TextBlock Grid.Row="3" Grid.Column="0" CacheMode="BitmapCache" Text="下单时间：" />
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind _item.Address}" TextWrapping="Wrap" />
             <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind _item.UserName}" TextWrapping="Wrap" />
             <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind _item.Number}" TextWrapping="Wrap" />
             <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Bind _item.OrderTime}" TextWrapping="Wrap" />
-        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="确认送达"
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" CacheMode="BitmapCache" Content="确认送达"
                 Style="{StaticResource AccentButtonStyle}" Click="Confirm_OnClick"/>
     </Grid>
 </Page>

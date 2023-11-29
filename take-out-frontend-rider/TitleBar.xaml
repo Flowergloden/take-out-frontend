@@ -16,9 +16,9 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Width="48" Height="48" Click="ButtonBack_OnClick"
+        <Button Grid.Column="0" Width="48" Height="48" CacheMode="BitmapCache" Click="ButtonBack_OnClick"
                 Style="{StaticResource NavigationBackButtonNormalStyle}" />
-        <TextBlock Grid.Column="1" Text="clm take out rider" Style="{StaticResource CaptionTextBlockStyle}"
+        <TextBlock Grid.Column="1" CacheMode="BitmapCache" Text="clm take out rider" Style="{StaticResource CaptionTextBlockStyle}"
                    VerticalAlignment="Center" />
     </Grid>
 </UserControl>
