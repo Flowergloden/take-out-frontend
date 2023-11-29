@@ -11,7 +11,7 @@ public static class Profiles
 {
     public static bool HasOrder = false;
 
-    public static Object OrderNow;
+    public static object? OrderNow;
 
     private const string Server = "http://43.143.235.93:8080";
 
