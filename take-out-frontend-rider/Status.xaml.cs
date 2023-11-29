@@ -33,6 +33,7 @@ namespace take_out_frontend_rider
 
         public Status()
         {
+            NavigationCacheMode = NavigationCacheMode.Required;
             GetStatus();
             StatusChanged += (_, _) => { this.InitializeComponent(); };
         }
