@@ -34,7 +34,8 @@ namespace take_out_frontend_rider
         private const int PageSize = 10;
         private int Page = 1;
 
-        private const string PutDir = "rider/take";
+        private const string PutDir = "rider/take?";
+        private const string ParaId = "id=";
 
         public List<OrderAvailableItem> Items;
 
@@ -116,12 +117,7 @@ namespace take_out_frontend_rider
 
         private async void AcceptPut(int id)
         {
-            var content = JsonContent.Create(new
-            {
-                id,
-            });
-
-            var message = await Profiles.PutClient(PutDir, content);
+            var message = await Profiles.PutClient(PutDir+ParaId+id.ToString());
             var json = JsonDocument.Parse(message);
             var root = json.RootElement;
 

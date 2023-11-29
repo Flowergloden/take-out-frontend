@@ -29,9 +29,9 @@ public static class Profiles
         return jsonResponse;
     }
 
-    public static async Task<string> PutClient(string dir, JsonContent? content)
+    public static async Task<string> PutClient(string dir)
     {
-        var message = await Client.PutAsync(dir, content);
+        var message = await Client.PutAsync(dir, null);
         message.EnsureSuccessStatusCode();
         var jsonResponse = await message.Content.ReadAsStringAsync();
         Console.Write($"{jsonResponse}\n");
