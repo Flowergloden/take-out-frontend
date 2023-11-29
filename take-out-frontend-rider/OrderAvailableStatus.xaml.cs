@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
@@ -24,7 +25,11 @@ namespace take_out_frontend_rider
     /// </summary>
     public sealed partial class OrderAvailableStatus : Page
     {
+        private const string Dir = "rider/arrive/";
+
         private OrderAvailableItem _item;
+
+        private event EventHandler OnConfirm;
 
         public OrderAvailableStatus()
         {
@@ -43,19 +48,35 @@ namespace take_out_frontend_rider
 
         private void Confirm_OnClick(object sender, RoutedEventArgs e)
         {
-            Profiles.HasOrder = false;
-            Profiles.OrderNow = null;
-            var frame = MainWindow.Instance.MainContextFrame;
-            frame.Navigate(typeof(OrderAvailable), null, new DrillInNavigationTransitionInfo());
-            // frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
-            for (int i = 0; i < frame.BackStack.Count; i++)
+            ConfirmPut(_item.Id);
+
+            OnConfirm += (_, _) =>
             {
-                if (frame.BackStack[i].SourcePageType == typeof(OrderAvailableStatus))
+                Profiles.HasOrder = false;
+                Profiles.OrderNow = null;
+                var frame = MainWindow.Instance.MainContextFrame;
+                frame.Navigate(typeof(OrderAvailable), null, new DrillInNavigationTransitionInfo());
+                // frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
+                for (int i = 0; i < frame.BackStack.Count; i++)
                 {
-                    frame.BackStack.RemoveAt(i);
-                    --i;
+                    if (frame.BackStack[i].SourcePageType == typeof(OrderAvailableStatus))
+                    {
+                        frame.BackStack.RemoveAt(i);
+                        --i;
+                    }
                 }
-            }
+            };
+        }
+
+        private async void ConfirmPut(int id)
+        {
+            var message = await Profiles.PutClient(Dir + id.ToString());
+            var json = JsonDocument.Parse(message);
+            var root = json.RootElement;
+
+            // TODO: check if success
+
+            OnConfirm?.Invoke(this, EventArgs.Empty);
         }
     }
 }

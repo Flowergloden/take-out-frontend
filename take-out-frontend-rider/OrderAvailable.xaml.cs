@@ -97,7 +97,7 @@ namespace take_out_frontend_rider
             var item = button.DataContext;
             var frame = MainWindow.Instance.MainContextFrame;
 
-            AcceptPut((item as OrderAvailableItem)?.Id ?? 0);
+            AcceptPut((item as OrderAvailableItem)?.Id ?? 114514);
 
             OnAccpet += (_, _) =>
             {
@@ -117,6 +117,8 @@ namespace take_out_frontend_rider
 
         private async void AcceptPut(int id)
         {
+            // TODO: check if id correct
+
             var message = await Profiles.PutClient(PutDir+ParaId+id.ToString());
             var json = JsonDocument.Parse(message);
             var root = json.RootElement;
