@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.Json;
 using Windows.Foundation;
@@ -25,7 +26,7 @@ namespace take_out_frontend_rider
     /// </summary>
     public sealed partial class OrderAvailable : Page
     {
-        private const string Dir = "rider/getOrder?";
+        private const string GetDir = "rider/getOrder?";
         private const string ParaPage = "page=";
         private const string ParaPageSize = "pageSize=";
         private const string ParaStatus = "status=";
@@ -33,13 +34,17 @@ namespace take_out_frontend_rider
         private const int PageSize = 10;
         private int Page = 1;
 
+        private const string PutDir = "rider/take";
+
         public List<OrderAvailableItem> Items;
 
         private event EventHandler OnGetData;
 
+        private event EventHandler OnAccpet;
+
         public OrderAvailable()
         {
-            GetData(Dir + ParaPage + Page.ToString()
+            GetData(GetDir + ParaPage + Page.ToString()
                     + And + ParaPageSize + PageSize.ToString()
                     + And + ParaStatus + "0");
             OnGetData += (_, _) => { this.InitializeComponent(); };
@@ -87,20 +92,42 @@ namespace take_out_frontend_rider
 
         private void Accept_OnClick(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            var item = button?.DataContext;
+            var button = (sender as Button) ?? new Button();
+            var item = button.DataContext;
             var frame = MainWindow.Instance.MainContextFrame;
-            Profiles.HasOrder = true;
-            Profiles.OrderNow = item;
-            frame.Navigate(typeof(OrderAvailableStatus), item, new DrillInNavigationTransitionInfo());
-            for (int i = 0; i < frame.BackStack.Count; i++)
+
+            AcceptPut((item as OrderAvailableItem)?.Id ?? 0);
+
+            OnAccpet += (_, _) =>
             {
-                if (frame.BackStack[i].SourcePageType == typeof(OrderAvailable))
+                Profiles.HasOrder = true;
+                Profiles.OrderNow = item;
+                frame.Navigate(typeof(OrderAvailableStatus), item, new DrillInNavigationTransitionInfo());
+                for (int i = 0; i < frame.BackStack.Count; i++)
                 {
-                    frame.BackStack.RemoveAt(i);
-                    --i;
+                    if (frame.BackStack[i].SourcePageType == typeof(OrderAvailable))
+                    {
+                        frame.BackStack.RemoveAt(i);
+                        --i;
+                    }
                 }
-            }
+            };
+        }
+
+        private async void AcceptPut(int id)
+        {
+            var content = JsonContent.Create(new
+            {
+                id,
+            });
+
+            var message = await Profiles.PutClient(PutDir, content);
+            var json = JsonDocument.Parse(message);
+            var root = json.RootElement;
+
+            // TODO: check if success
+
+            OnAccpet?.Invoke(null, EventArgs.Empty);
         }
     }
 
