@@ -31,21 +31,16 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="配送id："
-                                   Style="{StaticResource BaseTextBlockStyle}" Margin="8,0,8,0" />
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="订单id："
-                                   Style="{StaticResource BodyTextBlockStyle}" Margin="8,0,8,0" />
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="订单状态："
-                                   Style="{StaticResource BodyTextBlockStyle}" Margin="8,0,8,0" />
+                        <TextBlock Text="id："
+                                   Style="{StaticResource BaseTextBlockStyle}" Margin="16,8,16,4" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="订单状态："
+                                   Style="{StaticResource BodyTextBlockStyle}" Margin="16,4,16,8" />
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind Id}"
-                                   Style="{StaticResource BaseTextBlockStyle}" Margin="8,0,8,0" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind OrderId}"
-                                   Style="{StaticResource BodyTextBlockStyle}" Margin="8,0,8,0" />
-                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind DeliveryStatus}"
-                                   Style="{StaticResource BodyTextBlockStyle}" Margin="8,0,8,0" />
+                                   Style="{StaticResource BaseTextBlockStyle}" Margin="16,8,16,4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind DeliveryStatus}"
+                                   Style="{StaticResource BodyTextBlockStyle}" Margin="16,4,16,8" />
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
