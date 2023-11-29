@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
@@ -24,16 +25,29 @@ namespace take_out_frontend_rider
     /// </summary>
     public sealed partial class OrderAvailable : Page
     {
+        private const string Dir = "rider/getOrder?";
+        private const string ParaPage = "page=";
+        private const string ParaPageSize = "pageSize=";
+        private const string ParaStatus = "status=";
+        private const string And = "&";
+        private const int PageSize = 10;
+        private int Page = 1;
+
         public List<OrderAvailableItem> Items;
+
+        private event EventHandler OnGetData;
 
         public OrderAvailable()
         {
-            this.InitializeComponent();
+            GetData(Dir + ParaPage + Page.ToString()
+                    + And + ParaPageSize + PageSize.ToString()
+                    + And + ParaStatus + "0");
+            OnGetData += (_, _) => { this.InitializeComponent(); };
 
             // TEST ONLY
             Items = new List<OrderAvailableItem>
             {
-                new ()
+                new()
                 {
                     Id = 1,
                     Number = "1",
@@ -46,11 +60,33 @@ namespace take_out_frontend_rider
             };
         }
 
-        private async void Accept_OnClick(object sender, RoutedEventArgs e)
+        private async void GetData(string curl)
         {
-            // TEST ONLY
-            await Profiles.GetClient("rider/info/1");
+            var message = await Profiles.GetClient(curl);
+            var json = JsonDocument.Parse(message);
+            var root = json.RootElement;
+            var data = root.GetProperty("data").GetProperty("records");
+            var len = data.GetArrayLength();
 
+            for (int i = 0; i < len; i++)
+            {
+                Items.Add(new()
+                {
+                    Address = data.GetProperty("address").GetString(),
+                    AddressBookId = data.GetProperty("addressBookId").GetInt32(),
+                    Id = data.GetProperty("id").GetInt32(),
+                    Number = data.GetProperty("number").GetString(),
+                    OrderTime = data.GetProperty("orderTime").GetString(),
+                    UserId = data.GetProperty("userId").GetInt32(),
+                    UserName = data.GetProperty("userName").GetString(),
+                });
+            }
+
+            OnGetData?.Invoke(null, EventArgs.Empty);
+        }
+
+        private void Accept_OnClick(object sender, RoutedEventArgs e)
+        {
             var button = sender as Button;
             var item = button?.DataContext;
             var frame = MainWindow.Instance.MainContextFrame;
