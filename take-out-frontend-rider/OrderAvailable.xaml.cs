@@ -36,7 +36,7 @@ namespace take_out_frontend_rider
 
         private const string PutDir = "rider/take/";
 
-        public List<OrderAvailableItem> Items;
+        public List<OrderAvailableItem> Items = new ();
 
         private event EventHandler OnGetData;
 

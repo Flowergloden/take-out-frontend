@@ -30,7 +30,7 @@ namespace take_out_frontend_rider
     /// </summary>
     public sealed partial class Order : Page
     {
-        public List<OrderItem> Orders;
+        public List<OrderItem> Orders = new();
 
         private event EventHandler OnGetData;
 
