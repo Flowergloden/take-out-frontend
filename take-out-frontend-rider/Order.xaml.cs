@@ -52,6 +52,9 @@ namespace take_out_frontend_rider
             var data = root.GetProperty("data");
             var len = data.GetArrayLength();
 
+            // TODO: explain DeliveryStatus
+            // TODO： consider adding more info
+
             for (int i = 0; i < len; i++)
             {
                 Orders.Add(new()

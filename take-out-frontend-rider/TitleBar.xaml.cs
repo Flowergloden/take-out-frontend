@@ -18,6 +18,8 @@ using Windows.Foundation.Collections;
 
 namespace take_out_frontend_rider
 {
+
+    // TODO: impl title in another way
     public sealed partial class TitleBar : UserControl
     {
         public TitleBar()

@@ -58,6 +58,8 @@ namespace take_out_frontend_rider
             var data = root.GetProperty("data").GetProperty("records");
             var len = data.GetArrayLength();
 
+            // TODO: turn 'T0' in message to 'Space'
+
             for (int i = 0; i < len; i++)
             {
                 Items.Add(new()
