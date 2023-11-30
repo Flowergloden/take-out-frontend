@@ -78,13 +78,13 @@ namespace take_out_frontend_rider
             {
                 Items.Add(new()
                 {
-                    Address = data.GetProperty("address").GetString(),
-                    AddressBookId = data.GetProperty("addressBookId").GetInt32(),
-                    Id = data.GetProperty("id").GetInt32(),
-                    Number = data.GetProperty("number").GetString(),
-                    OrderTime = data.GetProperty("orderTime").GetString(),
-                    UserId = data.GetProperty("userId").GetInt32(),
-                    UserName = data.GetProperty("userName").GetString(),
+                    Address = data[i].GetProperty("address").GetString(),
+                    AddressBookId = data[i].GetProperty("addressBookId").GetInt32(),
+                    Id = data[i].GetProperty("id").GetInt32(),
+                    Number = data[i].GetProperty("number").GetString(),
+                    OrderTime = data[i].GetProperty("orderTime").GetString(),
+                    UserId = data[i].GetProperty("userId").GetInt32(),
+                    UserName = data[i].GetProperty("userName").GetString(),
                 });
             }
 
