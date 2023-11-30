@@ -41,21 +41,6 @@ namespace take_out_frontend_rider
         {
             GetOrders(Dir + Para + "1");
             OnGetData += (_, _) => { this.InitializeComponent(); };
-
-            // TEST ONLY
-            Orders = new()
-            {
-                new()
-                {
-                    Id = 1,
-                    DeliveryStatus = 1
-                },
-                new()
-                {
-                    Id = 2,
-                    DeliveryStatus = 2
-                },
-            };
         }
 
         private async void GetOrders(string curl)

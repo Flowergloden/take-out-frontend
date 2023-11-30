@@ -48,21 +48,6 @@ namespace take_out_frontend_rider
                     + And + ParaPageSize + PageSize.ToString()
                     + And + ParaStatus + "0");
             OnGetData += (_, _) => { this.InitializeComponent(); };
-
-            // TEST ONLY
-            Items = new List<OrderAvailableItem>
-            {
-                new()
-                {
-                    Id = 1,
-                    Number = "1",
-                    UserId = 1,
-                    UserName = "张三",
-                    AddressBookId = 1,
-                    Address = "广东省广州市天河区华南理工大学长文本测试长文本测试长文本测试",
-                    OrderTime = "2021-06-01 12:00:00"
-                }
-            };
         }
 
         private async void GetData(string curl)
