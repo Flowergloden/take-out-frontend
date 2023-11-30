@@ -117,15 +117,20 @@ namespace take_out_frontend_rider
 
         private async void AcceptPut(int id)
         {
-            // TODO: check if id correct
+            if (id == 114514) return;
+            var message = await Profiles.PutClient(PutDir + ParaId + id.ToString());
 
-            var message = await Profiles.PutClient(PutDir+ParaId+id.ToString());
             var json = JsonDocument.Parse(message);
             var root = json.RootElement;
-
-            // TODO: check if success
-
-            OnAccpet?.Invoke(null, EventArgs.Empty);
+            var code = root.GetProperty("code").GetInt32();
+            if (code == 1)
+            {
+                OnAccpet?.Invoke(null, EventArgs.Empty);
+            }
+            else
+            {
+                Console.WriteLine(root.GetProperty("message").GetString());
+            }
         }
     }
 

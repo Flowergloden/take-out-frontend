@@ -71,12 +71,18 @@ namespace take_out_frontend_rider
         private async void ConfirmPut(int id)
         {
             var message = await Profiles.PutClient(Dir + id.ToString());
+
             var json = JsonDocument.Parse(message);
             var root = json.RootElement;
-
-            // TODO: check if success
-
-            OnConfirm?.Invoke(this, EventArgs.Empty);
+            var code = root.GetProperty("code").GetInt32();
+            if (code == 1)
+            {
+                OnConfirm?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                Console.WriteLine(root.GetProperty("message").GetString());
+            }
         }
     }
 }
