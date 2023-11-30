@@ -59,7 +59,7 @@ namespace take_out_frontend_rider
                     UserId = 1,
                     UserName = "张三",
                     AddressBookId = 1,
-                    Address = "广东省广州市天河区华南理工大学",
+                    Address = "广东省广州市天河区华南理工大学长文本测试长文本测试长文本测试",
                     OrderTime = "2021-06-01 12:00:00"
                 }
             };
