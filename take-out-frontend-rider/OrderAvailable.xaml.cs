@@ -34,14 +34,13 @@ namespace take_out_frontend_rider
         private const int PageSize = 10;
         private int Page = 1;
 
-        private const string PutDir = "rider/take?";
-        private const string ParaId = "id=";
+        private const string PutDir = "rider/take/";
 
         public List<OrderAvailableItem> Items;
 
         private event EventHandler OnGetData;
 
-        private event EventHandler OnAccpet;
+        private event EventHandler OnAccept;
 
         public OrderAvailable()
         {
@@ -84,7 +83,7 @@ namespace take_out_frontend_rider
                     Number = data[i].GetProperty("number").GetString(),
                     OrderTime = data[i].GetProperty("orderTime").GetString(),
                     UserId = data[i].GetProperty("userId").GetInt32(),
-                    UserName = data[i].GetProperty("userName").GetString(),
+                    UserName = data[i].GetProperty("consignee").GetString(),
                 });
             }
 
@@ -99,7 +98,7 @@ namespace take_out_frontend_rider
 
             AcceptPut((item as OrderAvailableItem)?.Id ?? 114514);
 
-            OnAccpet += (_, _) =>
+            OnAccept += (_, _) =>
             {
                 Profiles.HasOrder = true;
                 Profiles.OrderNow = item;
@@ -118,14 +117,14 @@ namespace take_out_frontend_rider
         private async void AcceptPut(int id)
         {
             if (id == 114514) return;
-            var message = await Profiles.PutClient(PutDir + ParaId + id.ToString());
+            var message = await Profiles.PutClient(PutDir + id.ToString());
 
             var json = JsonDocument.Parse(message);
             var root = json.RootElement;
             var code = root.GetProperty("code").GetInt32();
             if (code == 1)
             {
-                OnAccpet?.Invoke(null, EventArgs.Empty);
+                OnAccept?.Invoke(null, EventArgs.Empty);
             }
             else
             {
