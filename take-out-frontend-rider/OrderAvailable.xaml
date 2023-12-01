@@ -26,19 +26,20 @@
             FlowDirection="LeftToRight">
             <GridView.ItemTemplate>
                 <DataTemplate x:Key='TextTemplate' x:DataType='local:OrderAvailableItem'>
-                    <Grid Margin="8,8,8,8" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}" CornerRadius="10">
+                    <Grid Margin="8,8,8,8" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+                          CornerRadius="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="360" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="24" />
+                            <RowDefinition Height="36" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource BaseTextBlockStyle}"
-                                   Margin="8,0,8,0" Text="{x:Bind Address}" TextWrapping="Wrap"/>
+                                   Margin="16,8,16,4" Text="{x:Bind Address}" TextWrapping="Wrap" />
                         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource BodyTextBlockStyle}"
-                                   Margin="8,0,8,0" Text="{x:Bind OrderTime}" TextWrapping="Wrap"/>
+                                   Margin="16,4,16,8" Text="{x:Bind OrderTime}" TextWrapping="Wrap" />
                         <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
                                 CacheMode="BitmapCache"
                                 Style="{StaticResource AccentButtonStyle}"
