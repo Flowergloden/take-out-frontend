@@ -20,9 +20,21 @@
         </Grid.ColumnDefinitions>
         <local:TitleBar  Grid.ColumnSpan="2"/>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
-            <AppBarButton CacheMode="BitmapCache" Label="订单" Click="Switch_OrderAvailable"></AppBarButton>
-            <AppBarButton CacheMode="BitmapCache" Label="历史订单" Click="Switch_Order"></AppBarButton>
-            <AppBarButton CacheMode="BitmapCache" Label="个人数据" Click="Switch_status"></AppBarButton>
+            <AppBarButton CacheMode="BitmapCache" Label="订单" Click="Switch_OrderAvailable">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE700;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton CacheMode="BitmapCache" Label="历史订单" Click="Switch_Order">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE81C;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton CacheMode="BitmapCache" Label="个人数据" Click="Switch_status">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE77B;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
         </StackPanel>
         <Frame Grid.Row="1" Grid.Column="1" x:Name="ContextFrame"></Frame>
     </Grid>
