@@ -24,7 +24,8 @@ public static class Profiles
     {
         var message = await Client.GetAsync(dir);
         message.EnsureSuccessStatusCode();
-        var jsonResponse = await message.Content.ReadAsStringAsync();
+        var originJsonResponse = await message.Content.ReadAsStringAsync();
+        var jsonResponse = originJsonResponse.Replace("T0", " ").Replace("0T", " ");
         Console.Write($"{jsonResponse}\n");
         return jsonResponse;
     }
