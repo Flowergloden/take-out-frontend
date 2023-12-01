@@ -31,15 +31,20 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <TextBlock CacheMode="BitmapCache" Text="id："
                                    Style="{StaticResource BaseTextBlockStyle}" Margin="16,8,16,4" />
                         <TextBlock Grid.Row="1" Grid.Column="0" CacheMode="BitmapCache" Text="订单状态："
+                                   Style="{StaticResource BodyTextBlockStyle}" Margin="16,4,16,4" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" CacheMode="BitmapCache" Text="配送时间："
                                    Style="{StaticResource BodyTextBlockStyle}" Margin="16,4,16,8" />
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind Id}"
                                    Style="{StaticResource BaseTextBlockStyle}" Margin="16,8,16,4" />
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind DeliveryStatus}"
+                                   Style="{StaticResource BodyTextBlockStyle}" Margin="16,4,16,4" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind Time}"
                                    Style="{StaticResource BodyTextBlockStyle}" Margin="16,4,16,8" />
                     </Grid>
                 </DataTemplate>

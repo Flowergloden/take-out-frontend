@@ -24,6 +24,7 @@ namespace take_out_frontend_rider
     {
         public long Id;
         public string DeliveryStatus;
+        public string Time;
     }
 
     /// <summary>
@@ -65,6 +66,7 @@ namespace take_out_frontend_rider
                         _ => "Unknown delivery status code",
                     },
                     Id = data[i].GetProperty("id").GetInt64(),
+                    Time = data[i].GetProperty("orderTime").GetString(),
                 });
             }
 
