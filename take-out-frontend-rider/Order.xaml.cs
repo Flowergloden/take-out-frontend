@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,7 +23,7 @@ namespace take_out_frontend_rider
     public class OrderItem
     {
         public long Id;
-        public int DeliveryStatus;
+        public string DeliveryStatus;
     }
 
     /// <summary>
@@ -56,7 +57,13 @@ namespace take_out_frontend_rider
             {
                 Orders.Add(new()
                 {
-                    DeliveryStatus = data[i].GetProperty("status").GetInt32(),
+                    DeliveryStatus = data[i].GetProperty("status").GetInt32() switch
+                    {
+                        3 => "配送被取消",
+                        4 => "配送中",
+                        5 => "配送完成",
+                        _ => "Unknown delivery status code",
+                    },
                     Id = data[i].GetProperty("id").GetInt64(),
                 });
             }
